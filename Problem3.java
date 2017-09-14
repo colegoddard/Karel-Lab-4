@@ -12,8 +12,32 @@ public class Problem3 extends Robot
     }
     
     public void closeAllWindows() {
-        
+        checkWindows();
     }
-   
+    
+    public void checkWindows() {
+        move();
+        if (nextToABeeper()) {
+            turnOff();
+        }
+        turnLeft();
+        if (frontIsClear()) {
+            putBeeper();
+            turnRight();
+            checkWindows();
+        }
+        turnRight();
+        if (!frontIsClear()) {
+            turnRight();
+            checkWindows();
+        }
+        checkWindows();
+    }
+    
+    public void turnRight() {
+        turnLeft();
+        turnLeft();
+        turnLeft();
+    }
+    
 }
-
